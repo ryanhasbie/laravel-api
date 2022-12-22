@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\PostSingleResource;
 
 class PostController extends Controller
 {
@@ -16,9 +17,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post) {
+    public function show($id) {
+        $post = Post::find($id);
         return response()->json([
-            'post' => $post,
+            'post' => new PostSingleResource($post),
         ]);
     }
 }
