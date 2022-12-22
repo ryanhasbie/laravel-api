@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     
     public function index() {
-        $posts = Post::query()->select('id', 'user_id', 'title', 'description')->get();
+        $posts = Post::query()->select('id', 'user_id', 'title', 'description', 'created_at')->get();
         return response()->json([
             'posts' => PostResource::collection($posts),
         ]);
