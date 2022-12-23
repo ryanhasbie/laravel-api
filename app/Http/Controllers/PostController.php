@@ -31,11 +31,35 @@ class PostController extends Controller
             'description' => ['required', 'min:3'],
         ]);
 
-        $posts = $request->user()->posts()->create([
+        $post = $request->user()->posts()->create([
             'title' => $request->title,
             'description' => $request->description,
         ]);
 
-        return response()->json(['posts' => $posts]);
+        return response()->json(['post' => $post]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $this->authorize('update', $post);
+
+        $request->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:3'],
+        ]);
+
+        $post = Post::findOrFail($id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return response()->json(['post' => $post]);
+
+        // $post->update([
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        // ]);
+
+        // return response()->json("Oke");
     }
 }
