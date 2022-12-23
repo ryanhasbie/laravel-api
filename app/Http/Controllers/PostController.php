@@ -23,4 +23,19 @@ class PostController extends Controller
             'post' => new PostSingleResource($post),
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:3'],
+        ]);
+
+        $posts = $request->user()->posts()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return response()->json(['posts' => $posts]);
+    }
 }
