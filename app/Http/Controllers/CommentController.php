@@ -36,4 +36,14 @@ class CommentController extends Controller
 
         return new CommentResource($comment);
     }
+
+    public function destroy($id)
+    {
+        $comment = Comment::findOrFail($id)->delete();
+        
+        return response()->json([
+            'comment' => $comment,
+            'message' => "Deleted success",
+        ]);
+    }
 }
