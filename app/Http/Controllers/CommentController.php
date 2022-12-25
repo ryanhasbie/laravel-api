@@ -25,4 +25,15 @@ class CommentController extends Controller
 
         return new CommentResource($comment);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => ['required'],
+        ]);
+
+        $comment = Comment::findOrFail($id)->update($request->only('comment'));
+
+        return new CommentResource($comment);
+    }
 }

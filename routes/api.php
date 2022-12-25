@@ -23,6 +23,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('post');
 
     Route::post('/comments', [CommentController::class, 'store']);
+    Route::patch('/comments/{id}', [CommentController::class, 'update'])->middleware('comment');
+
 
 });
 
