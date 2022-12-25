@@ -16,7 +16,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', [AuthenticationController::class, 'me']); 
 
     Route::post('/posts', [PostController::class, 'store']);
+
     Route::patch('/posts/{id}', [PostController::class, 'update'])->middleware('post');
+
+    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('post');
 
 });
 
