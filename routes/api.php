@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AuthenticationController;
 
 Route::get('/posts', [PostController::class, 'index']);
@@ -20,6 +21,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('/posts/{id}', [PostController::class, 'update'])->middleware('post');
 
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('post');
+
+    Route::post('/comments', [CommentController::class, 'store']);
 
 });
 
