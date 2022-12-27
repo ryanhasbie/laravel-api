@@ -31,9 +31,13 @@ class PostController extends Controller
             'description' => ['required', 'min:3'],
         ]);
 
+        $name = date('dmY');
+        $image = $request->file('image');
+
         $post = $request->user()->posts()->create([
             'title' => $request->title,
             'description' => $request->description,
+            'image' => $request->hasFile('image') ? $image->storeAs('images/posts', $name .'.'. $image->extension()) : null,
         ]);
 
         return response()->json(['post' => $post]);
