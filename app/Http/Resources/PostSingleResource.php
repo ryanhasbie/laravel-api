@@ -21,6 +21,13 @@ class PostSingleResource extends JsonResource
             'user' => [
                 'name' => $this->user->name,
             ],
+            'comments' => $this->comments->map(fn ($comment) => [
+                'comment'  => $comment->comment,
+                'user' => [
+                    'id' => $comment->user->id,
+                    'name' => $comment->user->name,
+                ],
+            ])
         ];
     }
 }

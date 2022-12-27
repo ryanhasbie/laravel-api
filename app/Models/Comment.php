@@ -18,8 +18,8 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function posts()
+    public function post()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsTo(Post::class);
     }
 }
